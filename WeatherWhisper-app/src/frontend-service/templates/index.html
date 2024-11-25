@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherWhisper</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CSS Local -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Logo en la parte superior izquierda -->
+    <img src="{{ url_for('static', filename='images/cloud-sun.png') }}" alt="WeatherWhisper Logo" class="logo-img">
+
+    <!-- Título debajo del logo -->
+    <h1 class="site-title">WeatherWhisper</h1>
+    
+    <div class="container weather-container py-4">
+        <form id="city-search-form" class="form-inline mb-3 justify-content-center">
+            <input type="text" id="city-input" class="form-control mr-2" placeholder="Ingresa una ciudad" required>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Buscar</button>
+        </form>
+
+        <div class="weather-info">
+            <h1 id="city-name">Cargando...</h1>
+            <div class="weather-description-container d-flex align-items-center justify-content-center">
+                <i id="weather-icon" class="fas fa-cloud-sun"></i>
+                <p id="weather-description" class="ml-2">---</p>
+            </div>
+            <h2 id="temperature">-- °C</h2>
+
+            <div class="row weather-details">
+                <div class="col-6 col-md-4">
+                    <div class="detail-item">
+                        <h3>Humedad</h3>
+                        <p id="humidity">-- %</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="detail-item">
+                        <h3>Probabilidad de lluvia</h3>
+                        <p id="precipitation">-- %</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="detail-item">
+                        <h3>Intensidad de lluvia</h3>
+                        <p id="rainIntensity">-- %</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="detail-item">
+                        <h3>Recomendación por clima</h3>
+                        <p id="recommendation">Sin recomendación</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="detail-item">
+                        <h3>Índice UV</h3>
+                        <p id="uvIndex">--</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="detail-item">
+                        <h3>Velocidad del viento</h3>
+                        <p id="windSpeed">-- km/h</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="detail-item">
+                        <h3>Visibilidad</h3>
+                        <p id="visibility">-- km</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="detail-item">
+                        <h3>Cobertura Nubosa</h3>
+                        <p id="cloudCover">-- %</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="detail-item">
+                        <h3>Coordenadas</h3>
+                        <p id="coordinates">--</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

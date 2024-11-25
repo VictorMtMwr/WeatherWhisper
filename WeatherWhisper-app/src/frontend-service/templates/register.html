@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherWhisper - Create Account</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <div class="logo">
+                <img src="/static/images/cloud-sun.png" alt="WeatherWhisper Logo" class="logo-img">
+                <h1 class="logo-text">WeatherWhisper</h1>
+            </div>
+
+            <form class="form-container" method="POST" action="/api/register">
+                <h2>Create an account</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="********" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="phone_number">Phone</label>
+                        <input type="text" id="phone_number" name="phone_number" placeholder="+57 ()-000-0000" required>
+                    </div>
+                </div>
+                <button type="submit" class="register-btn">REGISTER</button>
+                <p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia sesión aquí</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

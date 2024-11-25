@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  # Servicio de frontend (sin conexión a la base de datos)
+  frontend-service:
+    build: ./src/frontend-service
+    image: frontend-service
+    ports:
+      - "8000:8000"
+    networks:
+      - weather-app-network
+
+  # Servicio de autenticación (conexión a la base de datos MySQL)
+  auth-service:
+    build: ./src/auth-service
+    image: auth-service
+    ports:
+      - "5000:5000"
+    environment:
+      MYSQL_HOST: mysql  # Nombre del servicio de MySQL
+      MYSQL_USER: root
+      MYSQL_PASSWORD: victormt26.2024
+      MYSQL_DATABASE: weatherwhisper
+    networks:
+      - weather-app-network
+    depends_on:
+      - mysql  # Asegura que MySQL esté disponible antes de iniciar auth-service
+
+  # Servicio de clima (weather-service, sin conexión a la base de datos)
+  weather-service:
+    build: ./src/weather-service
+    image: weather-service
+    ports:
+      - "5001:5001"
+    networks:
+      - weather-app-network
+
+  # Servicio de base de datos MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: victormt26.2024  # Configura la contraseña para el usuario root
+      MYSQL_DATABASE: weatherwhisper  # Base de datos a crear
+    ports:
+      - "3307:3306"  # Puerto de MySQL
+    volumes:
+      - mysql-data:/var/lib/mysql  # Volumen persistente para los datos de MySQL
+    networks:
+      - weather-app-network
+
+networks:
+  weather-app-network:
+    driver: bridge  # Red personalizada para los contenedores
+
+volumes:
+  mysql-data:
+    driver: local  # Volumen para persistir los datos de MySQL
